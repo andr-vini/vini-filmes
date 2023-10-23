@@ -1,14 +1,13 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 
-import VerticalCard from '../../Components/Cards/VerticalCard'
 import Logo from '../../Components/Logo'
+import VerticalCard from '../../Components/Cards/VerticalCard'
 import FormLogin from '../../Components/Forms/FormLogin'
 
 const Login = () => {
-  const [buttonText, setButtonText] = useState('Login');
-  const [sendingRequest, setSendingRequest] = useState(false);
+  const [buttonText, setButtonText] = useState('Login')
+  const [sendingRequest, setSendingRequest] = useState(false)
 
   function handleSubmitLogin(event){
     event.preventDefault();
