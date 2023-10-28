@@ -1,0 +1,3 @@
+.search-icon-move{
+    @apply group-focus-within:-translate-x-1 group-focus-within:right-5 group-focus-within:text-black
+}

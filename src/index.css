@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+body{
+    @apply overflow-hidden
+}
 input.focused{
     @apply rounded-lg group-focus-within:rounded-b-none group-focus-within:rounded-t-xl
 }
