@@ -1,13 +1,29 @@
-import React from 'react'
+import { useState } from 'react'
+import { AiOutlineEyeInvisible, AiOutlineEye } from 'react-icons/ai';
+
 const InputPassword = ({sendingRequest, placeholder = 'Digite sua senha'}) => {
+  const [passVisible, setPassVisible] = useState(false);
+  
+  function setVisibility(event){
+    if(!passVisible){
+      setPassVisible(true);
+      return;
+    }
+    setPassVisible(false)
+  }
+  
+  function showIconVisibilityPassword(event){
+    return passVisible ? <AiOutlineEye className="text-amber-400 text-2xl"/> : <AiOutlineEyeInvisible className="text-amber-400 text-2xl"/>
+  }
   
   return (
     <div className="w-11/12 mx-auto mb-2 group flex flex-col">
       <div>
-        <input className="w-full outline-none px-3 py-1 bg-gray-900 focused disabled:opacity-50" type="password" placeholder={placeholder} disabled={sendingRequest}/>
+        <input id="password" className="w-full outline-none px-3 py-1 bg-gray-900 focused disabled:opacity-50" type={passVisible ? "text" : "password"} placeholder={placeholder} disabled={sendingRequest}/>
         <div className="relative w-full">
-          <span className="absolute right-2 bottom-1">
-            <span className="">
+          <span className="absolute right-2 bottom-1 cursor-pointer">
+            <span onClick={setVisibility}>
+              {showIconVisibilityPassword()}
             </span>
           </span>
         </div>
