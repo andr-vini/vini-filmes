@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import NavBar from '../NavBar'
 import Logo from '../Logo'
 import InputSearch from '../Inputs/InputSearch'
@@ -6,7 +6,7 @@ import { AiOutlineMenu } from 'react-icons/ai'
 
 const Header = () => {
   const [menuOpened, setMenuOpened] = useState(false);
-
+  const ref = useRef(null);
   function openMenu(){
     if(!menuOpened){
       setMenuOpened(true)
@@ -15,8 +15,21 @@ const Header = () => {
     setMenuOpened(false)
   }
 
+  const handleClickOutside = (event) => {
+    if (ref.current && !ref.current.contains(event.target)) {
+      setMenuOpened(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside, true);
+    return () => {
+      document.removeEventListener("click", handleClickOutside, true);
+    };
+  });
+
   return (
-    <div className="bg-transparent flex pt-6 pb-4 px-5 justify-between items-center border-b-2 border-blue-500">
+    <div ref={ref} className="bg-transparent flex pt-6 pb-4 px-5 justify-between items-center border-b-2 border-amber-400">
       <div className="flex justify-between flex-wrap w-full">
         <div className="flex text-3xl">
             <Logo/>
@@ -26,7 +39,7 @@ const Header = () => {
             <NavBar openResponsiveMenu={menuOpened}/>
         </div>
         <div className="flex flex-wrap-reverse sm:top-2 relative top-3.5">
-          <span className="sm:block sm:static order-2 relative bottom-1">
+          <span className="sm:block sm:static  relative bottom-1">
             <InputSearch/>
           </span>
           <span className="sm:hidden sm:order-none cursor-pointer ms-3" onClick={openMenu}>
