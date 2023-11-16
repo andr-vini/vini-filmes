@@ -8,3 +8,7 @@ body{
 input.focused{
     @apply rounded-lg group-focus-within:rounded-b-none group-focus-within:rounded-t-xl
 }
+
+.hidden-scrollbar::-webkit-scrollbar {
+    display: none;
+}
